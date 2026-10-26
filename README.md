@@ -14,7 +14,7 @@ I build business automation workflows using **n8n, Google Sheets, Google Forms, 
 
 ## Featured Project
 
-### Real Estate Lead Capture & Qualification Automation
+### [View Project Documentation](projects/real-estate-lead-automation/README.md)
 
 **Status:** Built and tested
 
