@@ -69,7 +69,7 @@ I welcome conversations about workflow automation projects, collaborations, and 
 
 **GitHub:** https://github.com/timothychristopher-wq
 
-**Contact:** Add your preferred professional email address here.
+**Contact:** timothyasuelimen303@gmail.com
 
 ---
 
