@@ -59,7 +59,7 @@ I built an automation workflow that:
 
 ## Who I Want to Work With
 
-I am interested in helping real estate agencies, small businesses, consultants, and service providers automate repetitive processes and improve the way they handle enquiries.
+I am interested in helping agencies, small businesses, consultants, and service providers automate repetitive processes and improve the way they handle enquiries.
 
 ## Let's Work Together
 
