@@ -1,4 +1,4 @@
-# Real Estate Lead Capture & Qualification Automation
+  # Real Estate Lead Capture & Qualification Automation
 
 ## Project Overview
 
@@ -68,6 +68,26 @@ Future versions could include:
 - Integration with a CRM system.
 - AI-assisted enquiry categorization.
 - Reporting on lead sources and conversion rates.
+
+- ## Setup Instructions
+
+### Prerequisites
+
+Before running this workflow, you may need:
+
+- An n8n instance (cloud or self-hosted).
+- Access to the services connected to the workflow.
+- The required credentials configured securely inside n8n.
+- Sample lead data for testing.
+
+### Installation
+
+1. Open your n8n instance.
+2. Import the workflow JSON file if an export is available.
+3. Configure the required nodes and integrations.
+4. Add credentials through n8n's credential manager.
+5. Review the workflow settings before activating it.
+6. Test the workflow using sample data.
 
 ## Interested in Workflow Automation?
 
