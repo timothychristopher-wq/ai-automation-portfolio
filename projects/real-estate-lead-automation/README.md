@@ -89,6 +89,30 @@ Before running this workflow, you may need:
 5. Review the workflow settings before activating it.
 6. Test the workflow using sample data.
 
+
+### Testing and Validation
+
+The n8n workflow is exported and stored in this repository.
+
+###esting Checklist
+
+Confirm the workflow imports successfully into n8n.
+
+Verify the form captures the expected lead information.
+
+Confirm each lead is stored correctly in Google Sheets.
+
+Test the email step using a designated test recipient.
+
+Verify that one form submission does not trigger duplicate emails.
+
+Confirm error handling and document any limitations.
+
+Current Status
+
+Workflow exported: Yes
+Workflow tested end-to-end: Pending verification
+
 ## Interested in Workflow Automation?
 
 I am available to discuss practical automation solutions for real estate agencies, small businesses, and service providers.
