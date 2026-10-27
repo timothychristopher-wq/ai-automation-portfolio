@@ -94,7 +94,7 @@ Before running this workflow, you may need:
 
 The n8n workflow is exported and stored in this repository.
 
-###esting Checklist
+### testing Checklist
 
 Confirm the workflow imports successfully into n8n.
 
