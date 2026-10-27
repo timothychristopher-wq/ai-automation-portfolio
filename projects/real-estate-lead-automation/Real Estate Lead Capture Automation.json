@@ -1,0 +1,416 @@
+{
+  "name": "Real Estate Lead Capture Automation",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "1V9dj93JrHF7jwV-hcWeIBrKQ78wt1MVr8ws_Wbl1CrE",
+          "mode": "list",
+          "cachedResultName": "Real Estate Customer Enquiry Form (Responses)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1V9dj93JrHF7jwV-hcWeIBrKQ78wt1MVr8ws_Wbl1CrE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1634744221,
+          "mode": "list",
+          "cachedResultName": "Form Responses 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1V9dj93JrHF7jwV-hcWeIBrKQ78wt1MVr8ws_Wbl1CrE/edit#gid=1634744221"
+        },
+        "event": "rowAdded",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "059994ea-92c9-483e-b727-b2f51fa319d1",
+      "name": "Google Sheets Trigger",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "W2xyW2MInLfWEXr9",
+          "name": "Google Sheets Trigger account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "=reigntim@gmail.com",
+        "subject": "New Real Estate Lead Received",
+        "emailType": "text",
+        "message": "=New property enquiry received!\n\nCustomer Name: {{ $json['Full Name'] }}\nPhone Number: {{ $json['Phone Number'] }}\nEmail Address: {{ $json['Email Address'] }}\nProperty Type: {{ $json['Property Type'] }}\nBudget: {{ $json['Budget (₦)'] }}\nLead Priority: {{ $json.priority }}\n\n",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        224,
+        0
+      ],
+      "id": "2158641d-2bef-42a6-afb8-80c69142758f",
+      "name": "Send a message",
+      "webhookId": "61a8a99f-3a38-4142-b566-2845bf6270ec",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "IN3pOJnCX94R2ozo",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Google Sheets Trigger').item.json['Email Address'] }}",
+        "subject": "Welcome — We've Received Your Property Enquiry!",
+        "message": "=Hello,  Thank you for contacting us about your property needs.  We've received your enquiry and appreciate your interest in our real estate services. Our team will review the details you submitted and get back to you to discuss the next steps.  We look forward to assisting you in finding a property that suits your needs and budget.  \n\nBest regards,\nGates Real Property Service",
+        "options": {
+          "appendAttribution": false,
+          "senderName": "Gates Real Property Service"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        448,
+        0
+      ],
+      "id": "bd7e6fdd-9752-44ad-a4c6-df7a7a34d6ff",
+      "name": "Send a message1",
+      "webhookId": "a7e23ae5-9225-4a17-b53f-04aa430bb0d6",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "IN3pOJnCX94R2ozo",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "896b6b4a-8068-4e19-ad5a-3edf2c756a40",
+              "name": "budget",
+              "value": "={{ $('Google Sheets Trigger').item.json['Budget (₦)'] }}",
+              "type": "number"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        672,
+        0
+      ],
+      "id": "f38272fa-b432-449c-b366-b1794b7943a1",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "607da2df-ee18-45cc-b4e4-02042e11000f",
+              "leftValue": "={{ $json.budget }}",
+              "rightValue": 20000000,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        800,
+        304
+      ],
+      "id": "5bd516c5-f0b4-4aca-99cd-a03d437356cc",
+      "name": "Meduim priority"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "066898b5-cfc5-4f26-b47a-69fe45f0c76f",
+              "name": "priority",
+              "value": "High",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        1120,
+        48
+      ],
+      "id": "1837f8a7-59a1-426a-92a6-004d9a69f1c4",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b3d421e6-e846-4d55-8d73-649138a70ce3",
+              "name": "priority",
+              "value": "Meduim",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        1072,
+        288
+      ],
+      "id": "766ee497-aece-42f9-ae70-2017fe134ae3",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "79b7b4df-4e01-4d1e-922b-05a803909ab9",
+              "name": "priority",
+              "value": "Low",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        560,
+        128
+      ],
+      "id": "9c1b1d94-949a-4e09-83cd-f4b4e6100dd5",
+      "name": "Edit Fields3"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "57d20927-a679-4e45-b83f-520413e39cbe",
+              "leftValue": "={{ $json.budget }}",
+              "rightValue": 50000000,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        896,
+        64
+      ],
+      "id": "70c99b27-d058-4f55-9e4a-b94128170725",
+      "name": "High priority"
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        256,
+        272
+      ],
+      "id": "e8ba4dff-57de-4b22-8520-aabc77c09b8a",
+      "name": "Merge",
+      "alwaysOutputData": false
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Google Sheets Trigger": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        [
+          {
+            "node": "Send a message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "High priority",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Meduim priority": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "High priority": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Meduim priority",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Edit Fields3": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "bbbd46e4-8d7c-4177-b009-ef0d26771130",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e44b351e38e27cb0bedd493811dce682a1ea030357c4037bc7ed2bdb4d710292"
+  },
+  "nodeGroups": [],
+  "id": "wPkjqEXApxFqo89j",
+  "tags": []
+}
