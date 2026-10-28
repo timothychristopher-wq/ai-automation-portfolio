@@ -113,6 +113,12 @@ Current Status
 Workflow exported: Yes
 Workflow tested end-to-end: Pending verification
 
+## Video Demonstration
+
+Watch the demonstration of my Real Estate Lead Capture Automation project to see the workflow design, lead-priority classification, and email automation process.
+
+**Demo video:** [Watch the Real Estate Lead Automation Demo](Real_Estate_Lead_Automation_Demo.mp4)
+
 ## Interested in Workflow Automation?
 
 I am available to discuss practical automation solutions for real estate agencies, small businesses, and service providers.
