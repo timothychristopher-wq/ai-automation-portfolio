@@ -99,6 +99,4 @@ The automation remains inactive and in test mode pending final security review a
 - Customer order-status tracking.
 - Production deployment and monitoring.
 
----
 
-**Built as an AI automation portfolio project to demonstrate practical business process automation.**
